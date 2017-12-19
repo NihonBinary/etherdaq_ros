@@ -207,6 +207,8 @@ EtherDAQDriver::EtherDAQDriver(const std::string &address, unsigned int uSpeed, 
             catch (boost::bad_lexical_cast &/*e*/)
             {
               ROS_WARN_STREAM("DAQCalibration: calcpf [" << cpf_xml->GetText() << "] is not a number");
+              ROS_WARN("Use default parameter for HEX-E. Fix etherdaq_driver.cpp if HEX-E has not been used.");
+              counts_per_force = 10000;
             }
           }
           else
@@ -222,6 +224,8 @@ EtherDAQDriver::EtherDAQDriver(const std::string &address, unsigned int uSpeed, 
             catch (boost::bad_lexical_cast &/*e*/)
             {
               ROS_WARN_STREAM("DAQCalibration: calcpt [" << cpt_xml->GetText() << "] is not a number");
+              ROS_WARN("Use default parameter for HEX-E. Fix etherdaq_driver.cpp if HEX-E has not been used.");
+              counts_per_torque = 100000;
             }
           }
           else
@@ -235,6 +239,8 @@ EtherDAQDriver::EtherDAQDriver(const std::string &address, unsigned int uSpeed, 
 				}
 				catch (boost::bad_lexical_cast & ) {
 					ROS_WARN_STREAM("DAQCalibration: calfu [" << fu_xml->GetText() << "] is not a number");	
+                                        ROS_WARN("Use default parameter for HEX-E. Fix etherdaq_driver.spp if HEX-E has not been used.");
+                                        force_units_ = 2;
 				}
 			}
 			else {
@@ -248,6 +254,8 @@ EtherDAQDriver::EtherDAQDriver(const std::string &address, unsigned int uSpeed, 
 				}
 				catch (boost::bad_lexical_cast & ) {
 					ROS_WARN_STREAM("DAQCalibration: caltu [" << tu_xml->GetText() << "] is not a number");	
+                                        ROS_WARN("Use default parameter for HEX-E. Fix etherdaq_driver.cpp if HEX-E has not been used.");
+                                        torque_units_ = 3;
 				}
 			}
 			else {
